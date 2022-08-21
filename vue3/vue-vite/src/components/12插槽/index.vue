@@ -11,9 +11,17 @@
         </div>
 
       </div>
-      <!-- 动态组件 -->
+      <!-- 插槽 -->
       <div class="right-com">
-        <component :is="curCom.comment"></component>
+        <Dialog>
+          <!-- #插槽的缩写  -->
+          <template #top>我被插入了上面好刺激！！！</template>
+          <!-- 作用域插槽，可以将子组件的变量传到父组件 -->
+          <template v-slot="{ data, index }">
+            {{ index }}---{{ data?.name }}---{{ data?.age }}
+          </template>
+          <template #bottom> 我被插入了下面，好刺激</template>
+        </Dialog>
       </div>
     </div>
   </div>
@@ -22,9 +30,7 @@
 <script lang='ts'>
 import { reactive, onMounted, markRaw } from 'vue'
 import TreeList from './components/TreeList.vue'
-import A from './components/A.vue'
-import B from './components/B.vue'
-import C from './components/C.vue'
+import Dialog from './components/Dialog.vue'
 type TreeNode = {
   id: string,
   childrens?: Array<TreeNode>
@@ -36,7 +42,7 @@ type Component = {
 }
 type CurCom = Pick<Component, 'comment'>
 export default {
-  components: { TreeList, A, B, C },
+  components: { TreeList, Dialog },
   setup() {
     onMounted(() => {
     });
@@ -69,32 +75,10 @@ export default {
     const clickId = (id: string) => {
       alert(id)
     }
-    const coms = reactive<Component[]>([
-      {
-        subscribe: '我是组件A',
-        comment:markRaw(A) 
-      },
-      {
-        subscribe: '我是组件B',
-        comment: markRaw(B) 
-      },
-      {
-        subscribe: '我是组件C',
-        comment: markRaw(C) 
-      }
-    ])
-    let curCom = reactive<CurCom>({
-      comment: coms[0]?.comment || null
-    })
-    const tabClick = (item:Component) => {
-        curCom.comment = item.comment
-    }
+
     return {
       data,
       clickId,
-      coms,
-      curCom,
-      tabClick
     };
   },
 }
@@ -113,6 +97,7 @@ export default {
     border: 1px solid #ccc;
     // display: flex;
     overflow: hidden;
+
     &-head {
       display: flex;
       align-items: center;
@@ -129,9 +114,7 @@ export default {
 
     &-com {
       width: 500px;
-      height: 500px;
       margin: 0 auto;
-      line-height: 500px;
     }
   }
 }

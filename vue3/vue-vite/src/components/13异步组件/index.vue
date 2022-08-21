@@ -11,24 +11,33 @@
         </div>
 
       </div>
-      <!-- 动态组件 -->
+      <!-- 插槽 -->
       <div class="right-com">
-        <component :is="curCom.comment"></component>
+        <!-- 需要通过Suspense内置组件加载异步插件 -->
+        <Suspense>
+          <!-- default插槽 加载异步组件 -->
+          <template #default>
+            <AsyncCom></AsyncCom>
+          </template>
+          <!-- fallback插槽组件未完成的时候显示的东东 -->
+          <template #fallback>
+            <div>loadding</div>
+          </template>
+        </Suspense>
       </div>
     </div>
   </div>
 </template>
 
 <script lang='ts'>
-import { reactive, onMounted, markRaw } from 'vue'
+import { reactive, onMounted, markRaw, defineAsyncComponent } from 'vue'
 import TreeList from './components/TreeList.vue'
-import A from './components/A.vue'
-import B from './components/B.vue'
-import C from './components/C.vue'
+import Sub from '../08生命周期/Sub.vue'
 type TreeNode = {
   id: string,
   childrens?: Array<TreeNode>
 }
+const AsyncCom = defineAsyncComponent(() => import('./components/AsyncCom.vue'))
 
 type Component = {
   comment: any,
@@ -36,65 +45,18 @@ type Component = {
 }
 type CurCom = Pick<Component, 'comment'>
 export default {
-  components: { TreeList, A, B, C },
+  components: { TreeList, AsyncCom },
   setup() {
     onMounted(() => {
     });
-    const data: TreeNode[] = [
-      {
-        id: '1',
-        childrens: [{
-          id: '1-1'
-        },
-        {
-          id: '1-2',
-          childrens: [{
-            id: '1-2-1',
-          }]
-        }]
-      },
-      {
-        id: '2',
-        childrens: [{
-          id: '2-1'
-        },
-        {
-          id: '2-2',
-        }]
-      },
-      {
-        id: '3',
-      }
-    ]
+    const data: TreeNode[] = []
     const clickId = (id: string) => {
       alert(id)
     }
-    const coms = reactive<Component[]>([
-      {
-        subscribe: '我是组件A',
-        comment:markRaw(A) 
-      },
-      {
-        subscribe: '我是组件B',
-        comment: markRaw(B) 
-      },
-      {
-        subscribe: '我是组件C',
-        comment: markRaw(C) 
-      }
-    ])
-    let curCom = reactive<CurCom>({
-      comment: coms[0]?.comment || null
-    })
-    const tabClick = (item:Component) => {
-        curCom.comment = item.comment
-    }
+    // 异步组件引入，需要通过defineAsyncComponent进行引入
     return {
       data,
       clickId,
-      coms,
-      curCom,
-      tabClick
     };
   },
 }
@@ -113,6 +75,7 @@ export default {
     border: 1px solid #ccc;
     // display: flex;
     overflow: hidden;
+
     &-head {
       display: flex;
       align-items: center;
@@ -129,9 +92,7 @@ export default {
 
     &-com {
       width: 500px;
-      height: 500px;
       margin: 0 auto;
-      line-height: 500px;
     }
   }
 }
