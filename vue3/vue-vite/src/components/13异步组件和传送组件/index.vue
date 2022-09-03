@@ -11,7 +11,7 @@
         </div>
 
       </div>
-      <!-- 插槽 -->
+      <!-- 异步组件 -->
       <div class="right-com">
         <!-- 需要通过Suspense内置组件加载异步插件 -->
         <Suspense>
@@ -24,6 +24,14 @@
             <div>loadding</div>
           </template>
         </Suspense>
+      </div>
+      <div class="right-tele" v-if="true">
+        <!-- 传送组件使用leteport, 可以让传送组件不受父元素样式影响，注意 v-if的优先级比传送组件搞 -->
+        <!-- to可以是id也可以是类选择器 -->
+        <!-- 传送走了 样式需要去传送位置定义 -->
+        <teleport to=".model">
+          <div class="teleport">13464564988\9</div>
+        </teleport>
       </div>
     </div>
   </div>
@@ -63,7 +71,7 @@ export default {
 </script>
 <style scoped lang='less'>
 .main-content {
-  overflow: hidden;
+  // overflow: hidden;
 
   .left {
     width: 500px;
@@ -93,6 +101,24 @@ export default {
     &-com {
       width: 500px;
       margin: 0 auto;
+    }
+
+    &-tele {
+      position: relative;
+      background-color: aqua;
+      height: 100px;
+
+      .teleport {
+        position: absolute;
+        left: 50px;
+        top: 50px;
+        background-color: darkgoldenrod;
+        height: 50px;
+        width: 100px;
+        text-align: center;
+        line-height: 50px;
+        z-index: 999;
+      }
     }
   }
 }
