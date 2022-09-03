@@ -21,6 +21,7 @@ declare module '@vue/runtime-core' {
     '12插槽': typeof import('./src/components/12插槽/index.vue')['default']
     '13异步组件和传送组件': typeof import('./src/components/13异步组件和传送组件/index.vue')['default']
     '14keepAlive和动画组件': typeof import('./src/components/14keep-alive和动画组件/index.vue')['default']
+    15transitionGroup: typeof import('./src/components/15transitionGroup/index.vue')['default']
     A: typeof import('./src/components/11全局和递归组件/components/A.vue')['default']
     AsyncCom: typeof import('./src/components/13异步组件和传送组件/components/AsyncCom.vue')['default']
     B: typeof import('./src/components/11全局和递归组件/components/B.vue')['default']
