@@ -6,7 +6,7 @@
 // import testRef from './components/05toRaw&markRaw/index.vue'
 // import testRef from './components/06customRef/index.vue'
 // import testRef from './components/10父子组件传参/index.vue'
-import testRef from './components/13异步组件和传送组件/index.vue'
+import testRef from './components/14keep-alive和动画组件/index.vue'
 // 熟悉vue3 v-bind v-on v-for v-model等指令
 import {ref}  from 'vue'
 // v-html
