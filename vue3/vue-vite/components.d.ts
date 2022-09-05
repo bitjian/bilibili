@@ -25,6 +25,8 @@ declare module '@vue/runtime-core' {
     '16组件传参': typeof import('./src/components/16组件传参/index.vue')['default']
     '16组件通信': typeof import('./src/components/16组件通信/index.vue')['default']
     17TSX: typeof import('./src/components/17TSX/index.vue')['default']
+    '18深入vModel': typeof import('./src/components/18深入v-model/index.vue')['default']
+    '深入vModel': typeof import('./src/components/深入v-model/index.vue')['default']
     A: typeof import('./src/components/11全局和递归组件/components/A.vue')['default']
     AsyncCom: typeof import('./src/components/13异步组件和传送组件/components/AsyncCom.vue')['default']
     B: typeof import('./src/components/11全局和递归组件/components/B.vue')['default']
