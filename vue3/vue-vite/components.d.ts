@@ -28,6 +28,7 @@ declare module '@vue/runtime-core' {
     '18深入vModel': typeof import('./src/components/18深入v-model/index.vue')['default']
     '19vue3指令': typeof import('./src/components/19vue3指令/index.vue')['default']
     '20自定义hook': typeof import('./src/components/20自定义hook/index.vue')['default']
+    '21全局属性和自定义插件': typeof import('./src/components/21全局属性和自定义插件/index.vue')['default']
     '深入vModel': typeof import('./src/components/深入v-model/index.vue')['default']
     A: typeof import('./src/components/11全局和递归组件/components/A.vue')['default']
     AsyncCom: typeof import('./src/components/13异步组件和传送组件/components/AsyncCom.vue')['default']
