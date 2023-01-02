@@ -31,6 +31,7 @@ declare module '@vue/runtime-core' {
     '21引入elementUi': typeof import('./src/components/21引入element-ui/index.vue')['default']
     '21引入elementUi&样式选择器': typeof import('./src/components/21引入element-ui&样式选择器/index.vue')['default']
     '22原子化css': typeof import('./src/components/22原子化css/index.vue')['default']
+    '23移动端自适应': typeof import('./src/components/23移动端自适应/index.vue')['default']
     '深入vModel': typeof import('./src/components/深入v-model/index.vue')['default']
     A: typeof import('./src/components/11全局和递归组件/components/A.vue')['default']
     A_21: typeof import('./src/components/21引入element-ui&样式选择器/A_21.vue')['default']
