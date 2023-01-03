@@ -7,6 +7,10 @@ import {fileURLToPath, URL} from "url"
 
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import postcsspxtoviewport from 'postcss-px-to-viewport' // 将px转换为vw vh
+// unocss
+import unocss from 'unocss/vite'
+import { presetUno, presetAttributify, presetIcons } from 'unocss'
+
 
 
 // https://vitejs.dev/config/
@@ -19,6 +23,20 @@ export default defineConfig({
     }),
     Components({
       resolvers: [ElementPlusResolver()],
+    }),
+    unocss({
+      rules: [
+        ['flex', {display: "flex"}],
+        ['red', {color: 'red'}],
+        [/^p-(\d+)$/, ([, d]) => ({ padding: `${Number(d) * 10}px`})]
+      ],
+      shortcuts: {
+        "flex-red":"flex red"
+      },
+      presets: [
+        presetUno(),
+        presetAttributify(),
+        presetIcons()],
     })
   ],
   css: {
