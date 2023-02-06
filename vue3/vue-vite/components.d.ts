@@ -33,6 +33,7 @@ declare module '@vue/runtime-core' {
     '23移动端自适应': typeof import('./src/components/23移动端自适应/index.vue')['default']
     '24unocss原子化': typeof import('./src/components/24unocss原子化/index.vue')['default']
     '25函数式变成': typeof import('./src/components/25函数式变成/index.vue')['default']
+    26pinia: typeof import('./src/components/26pinia/index.vue')['default']
     A: typeof import('./src/components/11全局和递归组件/components/A.vue')['default']
     A_21: typeof import('./src/components/21引入element-ui&样式选择器/A_21.vue')['default']
     AsyncCom: typeof import('./src/components/13异步组件和传送组件/components/AsyncCom.vue')['default']
